@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Gestión ADUANA - Paso Pehuenche</title>
+    <!-- Tailwind CSS CDN para un diseño móvil moderno y rápido -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconos Lucide para una interfaz intuitiva -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        govBlue: '#003399',
+                        govRed: '#EF3340',
+                        govGray: '#F3F4F6'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .mobile-container {
+            max-width: 412px;
+            min-height: 846px;
+        }
+        /* Ocultar barra de desplazamiento */
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-gray-800 flex justify-center items-center min-h-screen p-4">
+
+    <!-- CONTENEDOR MÓVIL SIMULADO -->
+    <div class="mobile-container w-full bg-white rounded-[36px] shadow-2xl overflow-hidden border-8 border-gray-900 relative flex flex-col font-sans select-none">
+
+        <!-- BARRA DE ESTADO MÓVIL (Estética) -->
+        <div class="bg-govBlue text-white text-xs px-6 pt-3 pb-1 flex justify-between items-center z-50">
+            <span class="font-bold">19:45</span>
+            <div class="flex space-x-2 items-center">
+                <i data-lucide="wifi" class="w-3.5 h-3.5"></i>
+                <i data-lucide="battery" class="w-4 h-4"></i>
+            </div>
+        </div>
+
+        <!-- ENCABEZADO DE LA APP COMPARTIDO -->
+        <div id="app-header" class="bg-govBlue text-white px-4 py-3 flex items-center justify-between shadow-md hidden">
+            <div class="flex items-center space-x-2">
+                <div class="w-2 h-6 bg-govRed rounded-full"></div>
+                <span class="font-bold text-sm tracking-wide">ADUANA DE CHILE</span>
+            </div>
+            <button onclick="showHelp()" class="text-white hover:text-gray-200 p-1 flex items-center space-x-1 border border-white/30 rounded-lg text-xs px-2 bg-white/10">
+                <i data-lucide="help-circle" class="w-4 h-4"></i>
+                <span>Ayuda</span>
+            </button>
+        </div>
+
+        <!-- CUERPO SCROLLABLE DE PANTALLAS -->
+        <div class="flex-1 overflow-y-auto bg-gray-50 flex flex-col relative">
+
+            <!-- PANTALLA 1: LOGIN (RF01) -->
+            <div id="screen-login" class="flex-1 flex flex-col justify-between p-6 bg-white">
+                <div class="flex flex-col items-center mt-12">
+                    <!-- Logotipo Simulado del Gobierno -->
+                    <div class="flex space-x-1 mb-4">
+                        <div class="w-6 h-16 bg-govBlue rounded-sm"></div>
+                        <div class="w-6 h-16 bg-govRed rounded-sm"></div>
+                    </div>
+                    <h1 class="text-xl font-black text-govBlue tracking-tight text-center">PLATAFORMA DE GESTIÓN ADUANERA</h1>
+                    <p class="text-xs text-gray-500 mt-1 font-medium">Complejo Fronterizo Pehuenche</p>
+                </div>
+
+                <div class="my-8 space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">RUT o Pasaporte</label>
+                        <div class="relative">
+                            <i data-lucide="user" class="w-5 h-5 absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" id="login-user" value="12.345.678-9" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-govBlue font-medium">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1">Contraseña</label>
+                        <div class="relative">
+                            <i data-lucide="lock" class="w-5 h-5 absolute left-3 top-3 text-gray-400"></i>
+                            <input type="password" value="••••••••" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-govBlue">
+                        </div>
+                    </div>
+                    <button onclick="navigate('dashboard')" class="w-full bg-govBlue text-white font-bold py-3 rounded-xl shadow-lg shadow-govBlue/20 hover:bg-blue-800 transition text-sm active:scale-[0.98]">
+                        Ingresar al Sistema
+                    </button>
+                </div>
+
+                <div class="text-center text-[10px] text-gray-400 font-medium">
+                    Ley N° 19.628 - Protección de la Vida Privada
+                </div>
+            </div>
+
+            <!-- PANTALLA 2: DASHBOARD (To-Be "Cero Papel") -->
+            <div id="screen-dashboard" class="p-4 space-y-4 hidden">
+                <div class="bg-gradient-to-r from-govBlue to-blue-800 p-5 rounded-2xl text-white shadow-xl relative overflow-hidden">
+                    <div class="absolute right-[-20px] bottom-[-20px] opacity-10">
+                        <i data-lucide="shield" class="w-32 h-32"></i>
+                    </div>
+                    <p class="text-xs opacity-80 font-medium">Bienvenido(a), Turista</p>
+                    <h2 class="text-lg font-bold truncate">Autogestión Digital</h2>
+                    <div class="mt-4 bg-white/10 backdrop-blur-md rounded-xl p-3 flex items-center justify-between text-xs">
+                        <span class="font-medium flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Sistema Operativo</span>
+                        <span class="opacity-90 font-bold">Paso Pehuenche</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider px-1">Trámites Disponibles</h3>
+
+                    <!-- Botón Principal de Inicio de Trámite -->
+                    <button onclick="navigate('wizard-1')" class="w-full bg-white border border-gray-100 p-4 rounded-xl shadow-sm hover:shadow-md transition flex items-center justify-between text-left active:scale-[0.99]">
+                        <div class="flex items-center space-x-3">
+                            <div class="p-2.5 bg-blue-50 text-govBlue rounded-xl">
+                                <i data-lucide="file-text" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800">Pre-llenado de Control Terrestre</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">Vehículos, Menores y Declaración SAG</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- WIZARD PASO 1: VEHÍCULOS (RF06, RF08, RF10) -->
+            <div id="screen-wizard-1" class="p-4 space-y-4 hidden flex-1 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <!-- Progress Bar -->
+                    <div class="flex items-center justify-between px-1">
+                        <span class="text-xs font-bold text-govBlue">Paso 1 de 3: Vehículo</span>
+                        <span class="text-xs text-gray-400 font-bold">33%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-govBlue h-full w-1/3 rounded-full"></div>
+                    </div>
+
+                    <h3 class="text-base font-black text-gray-800 mt-2">Salida y Admisión Temporal de Vehículos</h3>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Tipo de Vehículo</label>
+                            <select id="vehiculo-tipo" onchange="togglePlazoMaximo()" class="w-full p-2.5 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-govBlue font-medium">
+                                <option value="particular">Particular (Acuerdo Chile-Argentina)</option>
+                                <option value="diplomatico">Diplomático / Placa de Gracia</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Patente / Matrícula</label>
+                            <input type="text" value="ABCD-12" class="w-full p-2.5 border border-gray-300 rounded-xl text-sm uppercase font-mono font-bold tracking-wider focus:outline-none focus:ring-2 focus:ring-govBlue">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Plazo Solicitado (Días Corridos)</label>
+                            <input type="number" id="vehiculo-plazo" value="180" class="w-full p-2.5 border border-gray-300 rounded-xl text-sm font-bold focus:outline-none focus:ring-2 focus:ring-govBlue">
+                            <p id="plazo-help" class="text-[11px] text-gray-500 mt-1 font-medium">Plazo legal regulado: Máximo 180 días corridos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botonera -->
+                <div class="pt-4 border-t border-gray-100 flex space-x-3 bg-white">
+                    <button onclick="navigate('dashboard')" class="flex-1 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50">Cancelar</button>
+                    <button onclick="validateStep1()" class="flex-1 py-3 bg-govBlue text-white font-bold rounded-xl text-sm shadow-md hover:bg-blue-800">Siguiente</button>
+                </div>
+            </div>
+
+            <!-- WIZARD PASO 2: MENORES DE EDAD (RF03, RF04, RNF-RE-07) -->
+            <div id="screen-wizard-2" class="p-4 space-y-4 hidden flex-1 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between px-1">
+                        <span class="text-xs font-bold text-govBlue">Paso 2 de 3: Grupo Familiar</span>
+                        <span class="text-xs text-gray-400 font-bold">66%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-govBlue h-full w-2/3 rounded-full"></div>
+                    </div>
+
+                    <h3 class="text-base font-black text-gray-800 mt-2">Control Migratorio y Menores</h3>
+
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 flex space-x-2.5">
+                        <i data-lucide="info" class="w-5 h-5 text-govBlue flex-shrink-0 mt-0.5"></i>
+                        <p class="text-xs text-govBlue font-medium leading-relaxed">Menores de 18 años que viajen solos o con un padre deben cargar autorización notarial.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 bg-white border border-gray-200 rounded-xl">
+                            <div class="flex items-center space-x-2.5">
+                                <i data-lucide="user-check" class="w-5 h-5 text-gray-400"></i>
+                                <span class="text-xs font-bold text-gray-700">Juan Pérez (Titular Mayor)</span>
+                            </div>
+                            <span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-bold">Validado PDI</span>
+                        </div>
+
+                        <!-- Panel de Viaje del Menor -->
+                        <div class="border-2 border-dashed border-gray-300 rounded-2xl p-4 bg-white space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-black text-gray-800 flex items-center gap-1.5"><i data-lucide="baby" class="w-4 h-4 text-govRed"></i> Menor de Edad</span>
+                                <span class="text-[10px] bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full font-bold">Requiere Autorización</span>
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 mb-1">RUT Menor</label>
+                                <input type="text" value="25.432.109-K" class="w-full p-2 border border-gray-300 rounded-lg text-xs font-bold focus:outline-none">
+                            </div>
+
+                            <!-- Botón de Simulación de Carga Notarial (RNF-RE-07) -->
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-500 mb-1">Documento Notarial (PDF)</label>
+                                <button onclick="simulateUpload()" id="upload-btn" class="w-full py-2.5 border-2 border-govBlue border-dotted bg-blue-50/50 text-govBlue rounded-xl text-xs font-bold flex items-center justify-center space-x-2 hover:bg-blue-50 transition">
+                                    <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                                    <span id="upload-text">Subir Autorización Notarial</span>
+                                </button>
+                                <div id="progress-container" class="w-full bg-gray-200 h-1.5 rounded-full mt-2 hidden overflow-hidden">
+                                    <div id="progress-bar" class="bg-govBlue h-full w-0 transition-all duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 flex space-x-3 bg-white">
+                    <button onclick="navigate('wizard-1')" class="flex-1 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50">Atrás</button>
+                    <button onclick="validateStep2()" class="flex-1 py-3 bg-govBlue text-white font-bold rounded-xl text-sm shadow-md hover:bg-blue-800">Siguiente</button>
+                </div>
+            </div>
+
+            <!-- WIZARD PASO 3: DECLARACIÓN JURADA SAG (RF17, RF18, RF19, RF20) -->
+            <div id="screen-wizard-3" class="p-4 space-y-4 hidden flex-1 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between px-1">
+                        <span class="text-xs font-bold text-govBlue">Paso 3 de 3: Declaración SAG</span>
+                        <span class="text-xs text-gray-400 font-bold">99%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-govBlue h-full w-full rounded-full"></div>
+                    </div>
+
+                    <h3 class="text-base font-black text-gray-800 mt-2">Declaración Jurada Conjunta SAG/Aduana</h3>
+
+                    <div class="space-y-3">
+                        <p class="text-xs font-bold text-gray-600">¿Ingresa o transporta algunos de los siguientes elementos?</p>
+
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 flex items-start space-x-3">
+                            <input type="checkbox" id="check-articulos" class="mt-1 w-4 h-4 text-govBlue border-gray-300 rounded focus:ring-govBlue">
+                            <div>
+                                <label for="check-articulos" class="text-xs font-bold text-gray-800 block">Productos de origen vegetal, animal o derivados</label>
+                                <span onclick="showProhibited()" class="text-[11px] text-govRed font-bold underline cursor-pointer inline-block mt-0.5">Ver listado de productos prohibidos (RF18)</span>
+                            </div>
+                        </div>
+
+                        <!-- Sección Mascotas con Validación de Edad -->
+                        <div class="bg-white border border-gray-200 rounded-xl p-3 space-y-2">
+                            <div class="flex items-start space-x-3">
+                                <input type="checkbox" id="check-mascotas" onchange="toggleMascotaValidation()" class="mt-1 w-4 h-4 text-govBlue border-gray-300 rounded focus:ring-govBlue">
+                                <div>
+                                    <label for="check-mascotas" class="text-xs font-bold text-gray-800 block">Ingreso de Mascotas (Perros/Gatos)</label>
+                                    <p class="text-[11px] text-gray-400 font-medium">Requiere firma obligatoria de un mayor de 18 años.</p>
+                                </div>
+                            </div>
+                            <div id="mascota-edad-box" class="hidden pl-7 pt-1">
+                                <label class="block text-[11px] font-bold text-gray-500 mb-1">Edad del Declarante Responsable de la Mascota</label>
+                                <input type="number" id="declarante-edad" value="28" class="w-20 p-1.5 border border-gray-300 rounded-lg text-xs font-bold focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-gray-100 flex space-x-3 bg-white">
+                    <button onclick="navigate('wizard-2')" class="flex-1 py-3 border border-gray-300 text-gray-700 font-bold rounded-xl text-sm hover:bg-gray-50">Atrás</button>
+                    <button onclick="validateStep3()" class="flex-1 py-3 bg-govBlue text-white font-bold rounded-xl text-sm shadow-md hover:bg-blue-800">Finalizar Trámite</button>
+                </div>
+            </div>
+
+            <!-- COMPROBANTE FINAL (Código QR / RF50) -->
+            <div id="screen-receipt" class="p-4 space-y-4 hidden flex-1 flex flex-col justify-between bg-white">
+                <div class="space-y-6 text-center mt-4">
+                    <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex justify-center items-center mx-auto shadow-sm">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-black text-gray-900">¡Trámite Pre-aprobado Exitosamente!</h3>
+                        <p class="text-xs text-gray-500 mt-1 px-4">Su comprobante digital ya está registrado en la base transfronteriza.</p>
+                    </div>
+
+                    <!-- Código QR Simulado -->
+                    <div class="bg-gray-50 p-4 rounded-2xl inline-block border border-gray-100 shadow-inner relative group">
+                        <div class="w-44 h-44 bg-white p-2 border border-gray-200 rounded-xl flex items-center justify-center mx-auto">
+                            <!-- SVG QR Estático Realista -->
+                            <svg class="w-full h-full text-govBlue" viewBox="0 0 29 29" fill="none" stroke="currentColor" stroke-width="1">
+                                <path d="M1 1h7v7H1V1zm2 2v3h3V3H3zm8-2h1v1h-1V1zm2 0h3v1h-3V1zm4 0h1v2h-1V1zm2 0h4v1h-4V1zm5 0h1v1h-1V1zm-9 2h1v1h-1V3zm2 0h1v1h-1V3zm1 1h2v1h-2V4zm3-1h1v2h-1V3zm2 0h1v1h-1V3zm2 0h1v1h-1V3zm-11 2h2v1h-2V5zm3 0h1v1h-1V5zm1 1h1v1h-1V6zm1-1h1v1h-1V5zm3 0h2v1h-2V5zm4 0h1v2h-1V5zm-14 2h1v1h-1V7zm2 0h1v1h-1V7zm1 0h1v1h-1V7zm3 0h1v1h-1V7zm1 1h2v1h-2V8zm4-1h1v1h-1V7zm2 0h1v1h-1V7zm1 1h1v1h-1V8zm-21 3h1v1H1v-1zm2 0h1v1H3v-1zm2 0h1v1H5v-1zm3 0h2v1H8v-1zm3 0h1v2h-1v-2zm3 0h1v1h-1v-1zm1 1h2v1h-2v-1zm4-1h1v1h-1v-1zm1 1h1v1h-1v-1zm2-1h1v1h-1v-1zm2 0h3v1h-3v-1zm-21 3h1v1H1v-1zm3 0h1v1H4v-1zm2 0h1v1H6v-1zm1 1h2v1H7v-1zm4-1h1v1h-1v-1zm2 0h1v1h-1v-1zm1 1h1v1h-1v-1zm2-1h1v1h-1v-1zm3 0h1v1h-1v-1zm1 1h2v1h-2v-1zm4-1h1v1h-1v-1zm-19 2h2v1H2v-1zm3 0h1v2H5v-2zm3 0h1v1H8v-1zm1 1h2v1H9v-1zm4-1h1v1h-1v-1zm2 0h1v1h-1v-1zm1 1h1v1h-1v-1zm3-1h1v1h-1v-1zm2 0h2v1h-2v-1zm3 0h1v1h-1v-1zm-21 3h7v7H1v-7zm2 2v3h3V15H3z"/>
+                            </svg>
+                        </div>
+                        <div class="mt-2 text-[11px] font-mono text-gray-500 font-bold tracking-widest">TOKEN: PEH-2026-99A</div>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-xl p-3 border border-gray-100 text-left space-y-1.5 mx-2">
+                        <div class="flex justify-between text-xs"><span class="text-gray-500 font-medium">Código de Trámite:</span><span class="font-bold text-gray-800">#45910</span></div>
+                        <div class="flex justify-between text-xs"><span class="text-gray-500 font-medium">Aduana Integrada:</span><span class="font-bold text-govBlue text-xs">Chile - Argentina</span></div>
+                    </div>
+                </div>
+
+                <button onclick="resetApp()" class="w-full bg-govBlue text-white font-bold py-3 rounded-xl shadow-md hover:bg-blue-800 transition text-sm active:scale-[0.98]">
+                    Volver al Inicio
+                </button>
+            </div>
+
+        </div>
+
+        <!-- MODALES DE ALERTA DINÁMICOS -->
+        <div id="modal-alert" class="absolute inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-center items-end p-4 hidden">
+            <div class="bg-white w-full rounded-2xl p-4 space-y-4 shadow-2xl border-t-4 border-govRed">
+                <div class="flex items-start space-x-3">
+                    <div class="p-2 bg-red-100 text-govRed rounded-xl">
+                        <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h4 id="alert-title" class="font-black text-sm text-gray-900">Error de Validación</h4>
+                        <p id="alert-message" class="text-xs text-gray-500 mt-0.5 leading-relaxed">Mensaje descriptivo del error.</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-full bg-gray-100 text-gray-700 font-bold py-2.5 rounded-xl text-xs hover:bg-gray-200">Entendido</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CONTROLADORES LÓGICOS EN JAVASCRIPT (Control de Flujo y Reglas de Negocio) -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        let appState = {
+            currentScreen: 'login',
+            uploadCompleted: false
+        };
+
+        function navigate(screenId) {
+            // Ocultar todas las pantallas
+            ['login', 'dashboard', 'wizard-1', 'wizard-2', 'wizard-3', 'receipt'].forEach(id => {
+                document.getElementById(`screen-${id}`).classList.add('hidden');
+            });
+
+            // Mostrar pantalla destino
+            document.getElementById(`screen-${screenId}`).classList.remove('hidden');
+            appState.currentScreen = screenId;
+
+            // Manejo de Header Dinámico
+            const header = document.getElementById('app-header');
+            if (screenId === 'login') {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+        }
+
+        // REGLA DE NEGOCIO: Ajustar dinámicamente ayuda según tipo de vehículo (RF11, RF12)
+        function togglePlazoMaximo() {
+            const tipo = document.getElementById('vehiculo-tipo').value;
+            const helpText = document.getElementById('plazo-help');
+            const plazoInput = document.getElementById('vehiculo-plazo');
+
+            if (tipo === 'particular') {
+                helpText.innerText = "Plazo legal regulado: Máximo 180 días corridos.";
+                plazoInput.value = "180";
+            } else {
+                helpText.innerText = "Régimen especial diplomático: Máximo 90 días corridos.";
+                plazoInput.value = "90";
+            }
+        }
+
+        // VALIDACIÓN PASO 1 (RF10, RF12 - Control de Plazos Legales)
+        function validateStep1() {
+            const tipo = document.getElementById('vehiculo-tipo').value;
+            const plazo = parseInt(document.getElementById('vehiculo-plazo').value);
+
+            if (tipo === 'particular' && plazo > 180) {
+                showAlert("Infracción de Plazo Legal", "El acuerdo Chileno-Argentino estipula un plazo máximo improrrogable de 180 días corridos para vehículos particulares.");
+                return;
+            }
+            if (tipo === 'diplomatico' && plazo > 90) {
+                showAlert("Restricción de Placa de Gracia", "Los vehículos bajo franquicia diplomática tienen un tope legal de permanencia de 90 días.");
+                return;
+            }
+            navigate('wizard-2');
+        }
+
+        // SIMULACIÓN DE TIEMPO DE RESPUESTA DE SUBIDA (RNF-RE-07)
+        function simulateUpload() {
+            const btn = document.getElementById('upload-btn');
+            const txt = document.getElementById('upload-text');
+            const container = document.getElementById('progress-container');
+            const bar = document.getElementById('progress-bar');
+
+            btn.disabled = true;
+            container.classList.remove('hidden');
+            let width = 0;
+
+            // Simulación asíncrona de ~2.5 segundos para cumplir RNF-RE-07
+            const interval = setInterval(() => {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    txt.innerText = "Documento Cargado Exitosamente";
+                    btn.classList.remove('bg-blue-50/50', 'text-govBlue', 'border-govBlue');
+                    btn.classList.add('bg-green-50', 'text-green-700', 'border-green-500');
+                    appState.uploadCompleted = true;
+                } else {
+                    width += 10;
+                    bar.style.width = width + '%';
+                }
+            }, 250);
+        }
+
+        function validateStep2() {
+            if (!appState.uploadCompleted) {
+                showAlert("Documentación Faltante", "Debe cargar la autorización notarial digitalizada del menor de edad para continuar con el trámite migratorio.");
+                return;
+            }
+            navigate('wizard-3');
+        }
+
+        function toggleMascotaValidation() {
+            const box = document.getElementById('mascota-edad-box');
+            const check = document.getElementById('check-mascotas').checked;
+            if (check) box.classList.remove('hidden');
+            else box.classList.add('hidden');
+        }
+
+        // VALIDACIÓN PASO 3 (RF20 - Mayoría de edad obligatoria SAG)
+        function validateStep3() {
+            const checkMascota = document.getElementById('check-mascotas').checked;
+            const edad = parseInt(document.getElementById('declarante-edad').value);
+
+            if (checkMascota && edad < 18) {
+                showAlert("Restricción Sanitaria SAG", "Normativa del SAG: La declaración jurada para el ingreso de mascotas solo puede ser suscrita y firmada por un adulto mayor de 18 años.");
+                return;
+            }
+            navigate('receipt');
+        }
+
+        // MODALES AUXILIARES DE AYUDA Y ALERTAS (RF26, RF18)
+        function showAlert(title, message) {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-message').innerText = message;
+            document.getElementById('modal-alert').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-alert').classList.add('hidden');
+        }
+
+        function showHelp() {
+            showAlert("Portal de Ayuda Integrada", "Si presenta problemas de conectividad en el paso de montaña, el sistema guardará sus datos de forma local y los sincronizará automáticamente al detectar las balizas QR de la aduana.");
+        }
+
+        function showProhibited() {
+            showAlert("Productos Prohibidos - SAG", "Está estrictamente prohibido el ingreso de: Frutas frescas, semillas, artesanías en madera corteza, carnes crudas o embutidos sin certificación de origen.");
+        }
+
+        function resetApp() {
+            appState.uploadCompleted = false;
+            document.getElementById('upload-text').innerText = "Subir Autorización Notarial";
+            document.getElementById('upload-btn').className = "w-full py-2.5 border-2 border-govBlue border-dotted bg-blue-50/50 text-govBlue rounded-xl text-xs font-bold flex items-center justify-center space-x-2 hover:bg-blue-50 transition";
+            document.getElementById('upload-btn').disabled = false;
+            document.getElementById('progress-container').classList.add('hidden');
+            document.getElementById('progress-bar').style.width = '0%';
+            document.getElementById('check-mascotas').checked = false;
+            document.getElementById('check-articulos').checked = false;
+            document.getElementById('mascota-edad-box').classList.add('hidden');
+            navigate('dashboard');
+        }
+    </script>
+</body>
+</html>
